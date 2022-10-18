@@ -5,6 +5,7 @@ import { useState } from 'react';
 const HomeBody = () => {
   const [toggle, setToggle] = useState(false);
   const [modal, setModal] = useState('');
+  const [element, setElement] = useState({});
 
   const data: any = [
     {
@@ -82,7 +83,8 @@ const HomeBody = () => {
                     key={index}
                     className="cardContents"
                     onClick={() => {
-                      setModal('Site Deatails');
+                      setModal('Site Details');
+                      setElement(ele);
                       setToggle(true);
                     }}
                   >
@@ -124,7 +126,7 @@ const HomeBody = () => {
         </div>
         {toggle ? (
           <aside className="modal">
-            <Modal props={modal} />
+            <Modal props={modal} element={element} />
             <div className="closeBtnContainer">
               <button
                 onClick={() => {

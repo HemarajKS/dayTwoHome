@@ -1,8 +1,17 @@
 import './modal.css';
-const Modal = (props: any) => {
+const Modal = (props: any, element: any) => {
+  console.log('ele', element);
+
   return (
     <div className="modalBody">
       <div className="modalTitle">{props.props}</div>
+      {props.props === 'Site Details' ? (
+        <div className="modaledit">
+          <button className="modalEditButton">Edit</button>
+        </div>
+      ) : (
+        ''
+      )}
       <form className="modalBodyForm">
         <div className="modalInput occupy">
           <div>URL</div>
@@ -35,10 +44,14 @@ const Modal = (props: any) => {
           <textarea className="modalInputBar" />
         </div>
       </form>
-      <div className="modalButtons">
-        <button className="modalButton modalResetButton">Reset</button>
-        <button className="modalButton modalSaveButton">Save</button>
-      </div>
+      {props.props === 'Add Site' ? (
+        <div className="modalButtons">
+          <button className="modalButton modalResetButton">Reset</button>
+          <button className="modalButton modalSaveButton">Save</button>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

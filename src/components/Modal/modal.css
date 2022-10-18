@@ -101,3 +101,25 @@
   top: 0;
   right: 0;
 }
+
+.modalEditButton {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 45px;
+  width: 80px;
+  border-radius: 4px;
+  background-color: #0e85ff;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-bottom: 37px;
+}
+
+.modaledit {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
