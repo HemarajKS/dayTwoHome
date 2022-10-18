@@ -1,98 +1,119 @@
-import './homeBody.css'
-import { useState, useEffect } from 'react'
+import './homeBody.css';
 
 const HomeBody = () => {
-  const data = [
-    {
-      siteName: 'Facebook',
-      url: 'www.facebook.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcdXYZ',
-      notes: '',
-      icon: require(`../../assets/icons/Facebook.png`),
-    },
-    {
-      siteName: 'YouTube',
-      url: 'www.youtube.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcd123',
-      notes: '',
-      icon: require(`../../assets/icons/YouTube.png`),
-    },
-    {
-      siteName: 'Linkdin',
-      url: 'www.linkdin.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcd123',
-      notes: '',
-      icon: require(`../../assets/icons/LinkdIn.png`),
-    },
-    {
-      siteName: 'Facebook',
-      url: 'www.facebook.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcdXYZ',
-      notes: '',
-      icon: require(`../../assets/icons/Facebook.png`),
-    },
-    {
-      siteName: 'YouTube',
-      url: 'www.youtube.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcd123',
-      notes: '',
-      icon: require(`../../assets/icons/YouTube.png`),
-    },
-    {
-      siteName: 'Linkdin',
-      url: 'www.linkdin.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcd123',
-      notes: '',
-      icon: require(`../../assets/icons/LinkdIn.png`),
-    },
-    {
-      siteName: 'Facebook',
-      url: 'www.facebook.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcdXYZ',
-      notes: '',
-      icon: require(`../../assets/icons/Facebook.png`),
-    },
-    {
-      siteName: 'YouTube',
-      url: 'www.youtube.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcd123',
-      notes: '',
-      icon: require(`../../assets/icons/YouTube.png`),
-    },
-    {
-      siteName: 'Linkdin',
-      url: 'www.linkdin.com',
-      sector: 'Social Media',
-      userName: 'ssmraok',
-      sitePassword: 'abcd123',
-      notes: '',
-      icon: require(`../../assets/icons/LinkdIn.png`),
-    },
-  ]
+  // const data = [
+  //   {
+  //     siteName: 'Facebook',
+  //     url: 'www.facebook.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcdXYZ',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/Facebook.png`),
+  //   },
+  //   {
+  //     siteName: 'YouTube',
+  //     url: 'www.youtube.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcd123',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/YouTube.png`),
+  //   },
+  //   {
+  //     siteName: 'Linkdin',
+  //     url: 'www.linkdin.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcd123',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/LinkdIn.png`),
+  //   },
+  //   {
+  //     siteName: 'Facebook',
+  //     url: 'www.facebook.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcdXYZ',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/Facebook.png`),
+  //   },
+  //   {
+  //     siteName: 'YouTube',
+  //     url: 'www.youtube.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcd123',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/YouTube.png`),
+  //   },
+  //   {
+  //     siteName: 'Linkdin',
+  //     url: 'www.linkdin.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcd123',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/LinkdIn.png`),
+  //   },
+  //   {
+  //     siteName: 'Facebook',
+  //     url: 'www.facebook.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcdXYZ',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/Facebook.png`),
+  //   },
+  //   {
+  //     siteName: 'YouTube',
+  //     url: 'www.youtube.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcd123',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/YouTube.png`),
+  //   },
+  //   {
+  //     siteName: 'Linkdin',
+  //     url: 'www.linkdin.com',
+  //     sector: 'Social Media',
+  //     userName: 'ssmraok',
+  //     sitePassword: 'abcd123',
+  //     notes: '',
+  //     icon: require(`../../assets/icons/LinkdIn.png`),
+  //   },
+  // ];
 
-  if (localStorage.getItem('user Data') === null || 'undefined') {
-    localStorage.setItem('user Data', JSON.stringify(data))
+  const data: any = [
+    {
+      siteName: 'Linkdin',
+      url: 'www.linkdin.com',
+      sector: 'Social Media',
+      userName: 'ssmraok',
+      sitePassword: 'abcd123',
+      notes: '',
+      icon: require(`../../assets/icons/LinkdIn.png`),
+    },
+  ];
+
+  const currentUserData = localStorage.getItem('currentUser') || '';
+
+  if (localStorage.getItem('currentUser') === null || '[]') {
+    localStorage.setItem(currentUserData, JSON.stringify(data));
   }
 
-  const previousData = JSON.parse(localStorage.getItem('user Data') || '[]')
+  const currentUser = JSON.stringify(localStorage.getItem('currentUser') || '');
 
-  console.log(previousData)
+  if (localStorage.getItem(currentUser) === null || 'undefined') {
+    localStorage.setItem(currentUser, JSON.stringify(data));
+  }
+
+  const previousData: any = JSON.parse(
+    localStorage.getItem(currentUser) || '[]'
+  );
+
+  console.log(previousData);
 
   return (
     <div className="homeBodyContainer">
@@ -127,15 +148,16 @@ const HomeBody = () => {
             </div>
           ) : (
             <div className="cardContainer">
-              {previousData.map((ele: any) => {
+              {previousData.map((ele: any, index: number) => {
                 return (
-                  <div key={ele.siteName} className="cardContents">
+                  <div key={index} className="cardContents">
                     <div className="cardUpper">
                       <div className="cardLogo">
                         {' '}
                         {ele.icon !== '' ? (
                           <img src={ele.icon} alt="" />
                         ) : (
+                          // eslint-disable-next-line jsx-a11y/alt-text
                           <img
                             src={require('../../assets/icons/logo (2).png')}
                             height="50px"
@@ -160,14 +182,14 @@ const HomeBody = () => {
                     </div>
                     <div className="cardLink">{ele.url}</div>
                   </div>
-                )
+                );
               })}
             </div>
           )}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomeBody
+export default HomeBody;

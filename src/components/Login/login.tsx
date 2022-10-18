@@ -1,14 +1,14 @@
-import './login.css'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import './login.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Login = () => {
-  const navigate = useNavigate()
-  const [togglePass, setTogglePass] = useState(false)
+  const navigate = useNavigate();
+  const [togglePass, setTogglePass] = useState(false);
 
   const togglePassword = () => {
-    setTogglePass(!togglePass)
-  }
+    setTogglePass(!togglePass);
+  };
 
   if (localStorage.getItem('users') === null) {
     localStorage.setItem(
@@ -19,35 +19,38 @@ const Login = () => {
           JSON.stringify([
             { mobileNo: '9945810342', mPin: '9945' },
             { mobileNo: '9945810341', mPin: '9945' },
-          ]),
-        ),
-      ),
-    )
+          ])
+        )
+      )
+    );
   }
 
   const loginHandler = (e: any) => {
-    e.preventDefault()
-    type usersType = { mobileNo: number; mPin: number }
+    e.preventDefault();
+    type usersType = { mobileNo: number; mPin: number };
 
-    const mobileNo = e.target.mobileNo.value
-    const mPin = e.target.mPin.value
+    const mobileNo = e.target.mobileNo.value;
+    const mPin = e.target.mPin.value;
 
-    const userData = { mobileNo, mPin }
-    console.log('userData', userData)
+    const userData = { mobileNo, mPin };
+    console.log('userData', userData);
 
-    const users: usersType[] = JSON.parse(localStorage.getItem('users') || '[]')
-    console.log('users', users)
+    const users: usersType[] = JSON.parse(
+      localStorage.getItem('users') || '[]'
+    );
+    console.log('users', users);
 
     for (let i = 0; i < users.length; i++) {
       if (userData.mobileNo === users[i].mobileNo) {
         if (userData.mPin === users[i].mPin) {
-          localStorage.setItem('auth', 'authenticated')
-          navigate('/')
-          window.location.reload()
+          localStorage.setItem('auth', 'authenticated');
+          navigate('/');
+          localStorage.setItem('currentUser', mobileNo);
+          window.location.reload();
         }
       }
     }
-  }
+  };
 
   return (
     <div className="loginPage">
@@ -95,7 +98,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

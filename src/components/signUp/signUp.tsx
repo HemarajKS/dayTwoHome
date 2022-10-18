@@ -1,12 +1,12 @@
-import '../../components/Login/login.css'
-import '../../components/signUp/signUp.css'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import '../../components/Login/login.css';
+import '../../components/signUp/signUp.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  type usersType = { mobileNo: number; mPin: number }
-  const [togglePass, setTogglePass] = useState(false)
-  const navigate = useNavigate()
+  type usersType = { mobileNo: number; mPin: number };
+  const [togglePass, setTogglePass] = useState(false);
+  const navigate = useNavigate();
 
   if (localStorage.getItem('users') === null) {
     localStorage.setItem(
@@ -17,57 +17,59 @@ const SignUp = () => {
           JSON.stringify([
             { mobileNo: '9945810342', mPin: '9945' },
             { mobileNo: '9945810341', mPin: '9945' },
-          ]),
-        ),
-      ),
-    )
+          ])
+        )
+      )
+    );
   }
 
   const togglePassword = () => {
-    setTogglePass(!togglePass)
-  }
+    setTogglePass(!togglePass);
+  };
 
   const signUpHandler = (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const mobileNo: number = e.target.mobileNo.value
-    const newMPin: number = e.target.newMPin.value
-    const confirmMpin: number = e.target.confirmMPin.value
+    const mobileNo: number = e.target.mobileNo.value;
+    const newMPin: number = e.target.newMPin.value;
+    const confirmMpin: number = e.target.confirmMPin.value;
 
-    const userData = { mobileNo, mPin: newMPin }
+    const userData = { mobileNo, mPin: newMPin };
 
     const previousData: usersType[] = JSON.parse(
-      localStorage.getItem('users') || '[]',
-    )
+      localStorage.getItem('users') || '[]'
+    );
 
-    console.log('userData', previousData)
+    console.log('userData', previousData);
 
     if (previousData.length > 0 && mobileNo) {
       const mappedUser = previousData.map((user) => {
         if (user.mobileNo === mobileNo) {
-          return 'user'
+          return 'user';
         }
-        return 'no user'
-      })
+        return 'no user';
+      });
 
       if (newMPin === confirmMpin) {
         if (mappedUser.includes('user')) {
-          alert('user already exist')
+          alert('user already exist');
         } else if (mappedUser.includes('no user')) {
-          previousData.push(userData)
-          sessionStorage.setItem('signUpSuccess', 'true')
-          navigate('/landing/login')
-          window.location.reload()
+          previousData.push(userData);
+          sessionStorage.setItem('signUpSuccess', 'true');
+          navigate('/landing/login');
+
+          localStorage.setItem(JSON.stringify(mobileNo), '[]');
+          window.location.reload();
         }
       } else {
-        alert('mPin does not match')
+        alert('mPin does not match');
       }
 
-      console.log('pre', previousData)
-      localStorage.setItem('users', JSON.stringify(previousData))
+      console.log('pre', previousData);
+      localStorage.setItem('users', JSON.stringify(previousData));
     } else if ((previousData.length = 0 && mobileNo)) {
     }
-  }
+  };
 
   return (
     <div className="loginPage">
@@ -115,7 +117,7 @@ const SignUp = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
