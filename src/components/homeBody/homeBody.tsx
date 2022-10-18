@@ -1,6 +1,11 @@
+import Modal from '../Modal/modal';
 import './homeBody.css';
+import { useState } from 'react';
 
 const HomeBody = () => {
+  const [toggle, setToggle] = useState(false);
+  const [modal, setModal] = useState('');
+
   const data: any = [
     {
       siteName: 'Linkdin',
@@ -44,7 +49,14 @@ const HomeBody = () => {
               className="searchbarIcn"
             />
           </div>
-          <div className="headerAddButton">
+          <div
+            className="headerAddButton"
+            onClick={() => {
+              setModal('Add Site');
+              setToggle(true);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
             <img src={require('../../assets/icons/add_btn.png')} alt="add" />
           </div>
         </div>
@@ -66,7 +78,14 @@ const HomeBody = () => {
             <div className="cardContainer">
               {previousData.map((ele: any, index: number) => {
                 return (
-                  <div key={index} className="cardContents">
+                  <div
+                    key={index}
+                    className="cardContents"
+                    onClick={() => {
+                      setModal('Site Deatails');
+                      setToggle(true);
+                    }}
+                  >
                     <div className="cardUpper">
                       <div className="cardLogo">
                         {' '}
@@ -103,6 +122,26 @@ const HomeBody = () => {
             </div>
           )}
         </div>
+        {toggle ? (
+          <aside className="modal">
+            <Modal props={modal} />
+            <div className="closeBtnContainer">
+              <button
+                onClick={() => {
+                  setToggle(false);
+                }}
+                className="closeBtn"
+              >
+                <img
+                  src={require('../../assets/icons/close_btn.png')}
+                  alt="close"
+                />
+              </button>
+            </div>
+          </aside>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
