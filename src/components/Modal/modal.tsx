@@ -38,10 +38,17 @@ const Modal = (props: any) => {
   useEffect(() => {
     editVal();
   });
+
+  const submitHandler = (e: any) => {
+    e.preventDefault();
+    console.log(e.target.siteName.value);
+    console.log(e.target.sector.value);
+  };
+
   return (
     <div className="modalBody">
       <div className="modalTitle">{props.props}</div>
-      {props.props === 'Site Details' ? (
+      {props.props === 'Site Details' && !edit ? (
         <div className="modaledit">
           <button
             className="modalEditButton"
@@ -58,11 +65,13 @@ const Modal = (props: any) => {
       ) : (
         ''
       )}
-      <form className="modalBodyForm">
+      <form className="modalBodyForm" onSubmit={submitHandler}>
+        <input type="submit" />
         <div className="modalInput occupy">
           <div>URL</div>
           <input
             type="text"
+            name="url"
             className="modalInputBar"
             onChange={onChangeHandler}
             value={edit ? value.url : currentItem.url}
@@ -72,6 +81,7 @@ const Modal = (props: any) => {
           <div>Site Name</div>
           <input
             type="text"
+            name="siteName"
             className="modalInputBar"
             onChange={onChangeHandler}
             value={edit ? value.siteName : currentItem.siteName}
@@ -82,6 +92,7 @@ const Modal = (props: any) => {
           <div className="paswordEyeContainer">
             <input
               type="text"
+              name="sector"
               className="modalInputBar passwordEye"
               onChange={onChangeHandler}
               value={edit ? value.sector : currentItem.sector}
@@ -93,6 +104,7 @@ const Modal = (props: any) => {
           <div>User Name</div>
           <input
             type="text"
+            name="userName"
             className="modalInputBar"
             onChange={onChangeHandler}
             value={edit ? value.userName : currentItem.userName}
@@ -103,6 +115,7 @@ const Modal = (props: any) => {
           <div className="paswordEyeContainer">
             <input
               type="text"
+              name="sitePassword"
               className="modalInputBar passwordEye"
               onChange={onChangeHandler}
               value={edit ? value.sitePassword : currentItem.sitePassword}
@@ -112,13 +125,22 @@ const Modal = (props: any) => {
         </div>
         <div className="modalInput occupy">
           <div>Notes</div>
-          <textarea className="modalInputBar" />
+          <textarea className="modalInputBar" name="notes" />
         </div>
       </form>
+      {props.props === 'Site Details' ? (
+        <div className="modalButtons">
+          <button className="modalButton modalSaveButton">Update</button>
+        </div>
+      ) : (
+        ''
+      )}
       {props.props === 'Add Site' ? (
         <div className="modalButtons">
           <button className="modalButton modalResetButton">Reset</button>
-          <button className="modalButton modalSaveButton">Save</button>
+          <button className="modalButton modalSaveButton" type="submit">
+            Save
+          </button>
         </div>
       ) : (
         ''
