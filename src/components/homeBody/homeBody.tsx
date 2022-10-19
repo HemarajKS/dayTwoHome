@@ -6,10 +6,20 @@ const HomeBody = () => {
   const [toggle, setToggle] = useState(false);
   const [modal, setModal] = useState('');
   const [element, setElement] = useState({});
+  const [Index, setIndex] = useState(0);
 
   const data: any = [
     {
       siteName: 'Linkdin',
+      url: 'www.linkdin.com',
+      sector: 'Social Media',
+      userName: 'ssmraok',
+      sitePassword: 'abcd123',
+      notes: '',
+      icon: require(`../../assets/icons/LinkdIn.png`),
+    },
+    {
+      siteName: 'Youtube',
       url: 'www.linkdin.com',
       sector: 'Social Media',
       userName: 'ssmraok',
@@ -86,6 +96,7 @@ const HomeBody = () => {
                       setModal('Site Details');
                       setElement(ele);
                       setToggle(true);
+                      setIndex(index);
                     }}
                   >
                     <div className="cardUpper">
@@ -126,7 +137,7 @@ const HomeBody = () => {
         </div>
         {toggle ? (
           <aside className="modal">
-            <Modal props={modal} element={element} />
+            <Modal props={modal} element={Index} />
             <div className="closeBtnContainer">
               <button
                 onClick={() => {
