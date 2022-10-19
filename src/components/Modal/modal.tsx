@@ -41,12 +41,21 @@ const Modal = (props: any) => {
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    console.log(e.target.siteName.value);
-    console.log(e.target.sector.value);
+
+    const newData = {
+      siteName: e.target.siteName.value,
+      url: e.target.url.value,
+      sector: e.target.sector.value,
+      userName: e.target.userName.value,
+      sitePassword: e.target.sitePassword.value,
+      notes: e.target.notes.value,
+    };
+
+    console.log('new data', newData);
   };
 
   return (
-    <div className="modalBody">
+    <form className="modalBody">
       <div className="modalTitle">{props.props}</div>
       {props.props === 'Site Details' && !edit ? (
         <div className="modaledit">
@@ -65,8 +74,7 @@ const Modal = (props: any) => {
       ) : (
         ''
       )}
-      <form className="modalBodyForm" onSubmit={submitHandler}>
-        <input type="submit" />
+      <div className="modalBodyForm" onSubmit={submitHandler}>
         <div className="modalInput occupy">
           <div>URL</div>
           <input
@@ -127,7 +135,7 @@ const Modal = (props: any) => {
           <div>Notes</div>
           <textarea className="modalInputBar" name="notes" />
         </div>
-      </form>
+      </div>
       {props.props === 'Site Details' ? (
         <div className="modalButtons">
           <button className="modalButton modalSaveButton">Update</button>
@@ -137,15 +145,15 @@ const Modal = (props: any) => {
       )}
       {props.props === 'Add Site' ? (
         <div className="modalButtons">
-          <button className="modalButton modalResetButton">Reset</button>
-          <button className="modalButton modalSaveButton" type="submit">
-            Save
+          <button className="modalButton modalResetButton" type="submit">
+            Reset
           </button>
+          <input type="submit" value="submit" />
         </div>
       ) : (
         ''
       )}
-    </div>
+    </form>
   );
 };
 
